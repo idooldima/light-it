@@ -6,7 +6,7 @@ import {
     getProductsSuccess,
     getProductsError,
 } from "./actions";
-import { catalogProductssSelector } from "./selectors";
+
 
 export const getProductsSaga = function* (): SagaIterator {
     try {

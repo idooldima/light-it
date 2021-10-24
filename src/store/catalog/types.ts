@@ -3,8 +3,6 @@ export type ProductType = {
     img: string,
     text: string,
     title: string
-
-
 };
 
 export type Products = ProductType[]

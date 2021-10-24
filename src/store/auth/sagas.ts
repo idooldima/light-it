@@ -9,12 +9,15 @@ import {
     signUpError,
 } from "./actions";
 import { SagaActionType } from "../types";
-import { Credentials } from "./types";
+import { SignInPayload } from "./types";
+// import { push } from 'react-router-redux';
 import axios from "axios";
+import routes from "../../routes";
+import history from "../../history";
 
 export const signInSaga = function* ({
     payload: { username, password },
-}: SagaActionType<Credentials>): SagaIterator {
+}: SagaActionType<SignInPayload>): SagaIterator {
     try {
         const result = yield call(
             axios.post,
@@ -22,12 +25,12 @@ export const signInSaga = function* ({
             { username, password }
 
         );
-        console.log(result)
         yield put(signInSuccess({
             username,
             token: result.data.token,
             type: 'user'
         }));
+        history.push(routes.products.path)
     } catch (error: any) {
         yield put(signInError(error));
     }
@@ -36,7 +39,7 @@ export const signInSaga = function* ({
 
 export const signUpSaga = function* ({
     payload: { username, password },
-}: SagaActionType<Credentials>): SagaIterator {
+}: SagaActionType<SignInPayload>): SagaIterator {
     try {
         const result = yield call(
             axios.post,
@@ -60,3 +63,6 @@ export default function* root() {
     yield takeLatest(signInStart, signInSaga);
     yield takeLatest(signUpStart, signUpSaga)
 }
+
+
+//sdsddsdd

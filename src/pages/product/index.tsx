@@ -1,2 +1,7 @@
-const a = 1
-export { }
+export default function Product() {
+
+    return (
+        <div></div>
+    )
+
+}

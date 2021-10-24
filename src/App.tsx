@@ -1,14 +1,24 @@
-
+import { Route, Link, BrowserRouter, Router } from "react-router-dom";
 import './App.css';
-import SignIn from './pages/auth/signIn'
-import SignUp from './pages/auth/signUp';
-import Catalog from './pages/catalog';
+import { map } from 'lodash'
+import routes from "./routes";
+import history from './history';
+
 
 function App() {
   return (
     <div className="App">
-      <SignUp></SignUp>
-      <Catalog></Catalog>
+      <BrowserRouter>
+        <Router history={history}>
+          <div>
+            {map(routes, (route) => (
+              <Route key={route.path} path={route.path} exact={route.exact}>
+                <route.component />
+              </Route>
+            ))}
+          </div>
+        </Router>
+      </BrowserRouter>
     </div>
   );
 }

@@ -28,10 +28,10 @@ export const onResetProducts = (state: CatalogStateType) => ({
     ...initialState,
 });
 
-export const feedReducer = createReducer<CatalogStateType>({}, initialState)
+export const catalogReducer = createReducer<CatalogStateType>({}, initialState)
     .on(getProductsStart, onGetProductsStart)
     .on(getProductsSuccess, onGetProductsSuccess)
     .on(getProductsError, onGetProductsError)
     .on(resetProducts, onResetProducts)
 
-export default feedReducer;
+export default catalogReducer;

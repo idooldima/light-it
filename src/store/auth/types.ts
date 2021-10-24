@@ -1,7 +1,14 @@
+import { History } from 'history';
+
 export type Credentials = {
     username: string;
     password: string;
 };
+
+export type SignInPayload = Credentials & {
+    history: History
+
+}
 
 export type UserType = 'user' | 'guest'
 

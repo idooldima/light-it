@@ -1,14 +1,16 @@
-import { Input, Button, Grid, ListItem, Link } from "@material-ui/core";
+import { Input, Button, Grid, ListItem, Link, Box, TextField } from "@material-ui/core";
 import { useState } from "react";
 import { signUpStart, signInAsGuest, logout } from "../../../store/auth/actions";
 import { useDispatch, useSelector } from "react-redux"
+import { useHistory } from "react-router";
 
 export default function SignUp() {
     const dispatch = useDispatch();
+    const history = useHistory()
 
     const signUp = () => {
         dispatch(
-            signUpStart({ username: 'dima', password: 'dima123' })
+            signUpStart({ username: 'dima', password: 'dima123', history })
         );
     };
 
@@ -25,36 +27,52 @@ export default function SignUp() {
     )
 
     return (
-        <Grid container
-            spacing={1}
-            direction="column"
-            justifyContent="center"
-            alignItems="stretch"
-            style={{ minHeight: '99vh' }}>
-            <Grid item xs={7}>
-                <Input fullWidth type='email' placeholder='email'></Input>
-            </Grid>
-            <Grid item xs={7}>
-                <Input fullWidth type='password' placeholder='password'></Input>
-            </Grid>
-            <Grid item xs={7}>
-                <Input fullWidth type='password' placeholder='confirm your password'></Input>
-            </Grid>
-            <Grid item xs={6}>
+        <Box
+            component="form"
+            sx={{
+                boxSizing: 'border-box',
+                maxWidth: '100%',
+                minHeight: '95vh',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+            }}
+        >
+            <div>
+                <TextField
+                    fullWidth
+                    placeholder='username'
+                    id="outlined-error"
+                    label="username"
+                    margin="dense"
+                />
+                <TextField
+                    fullWidth
+                    placeholder='password'
+                    id="outlined-error-helper-text"
+                    label="password"
+                    margin="dense"
+                />
+                <TextField
+                    fullWidth
+                    placeholder='confirm your password'
+                    id="outlined-error-helper-text"
+                    label="confirm your password"
+                    margin="dense"
+                />
                 <Button fullWidth
-                    onClick={signUp}
-                >submit</Button>
-            </Grid>
-            <Grid item xs={6}>
+                    variant="outlined"
+                    onClick={signUp}>Register
+                </Button>
                 <Button fullWidth
-                    onClick={signInGuest}
-                >sign in like guest</Button>
-            </Grid>
-            <Grid item xs={6}>
+                    variant="outlined"
+                    onClick={signInGuest}>sign in like guest
+                </Button>
                 <Button fullWidth
-                    onClick={logoutacc}
-                >logout</Button>
-            </Grid>
-        </Grid>
+                    variant="outlined"
+                    onClick={logoutacc}>logout
+                </Button>
+            </div>
+        </Box>
     )
 }
