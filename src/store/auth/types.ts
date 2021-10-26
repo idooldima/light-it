@@ -1,14 +1,10 @@
-import { History } from 'history';
+
 
 export type Credentials = {
     username: string;
     password: string;
 };
 
-export type SignInPayload = Credentials & {
-    history: History
-
-}
 
 export type UserType = 'user' | 'guest'
 
@@ -21,6 +17,9 @@ export type User = {
 export type AuthStateType = {
     currentUser: User | null;
     isLoading: boolean;
-    error: null;
+    error: ErrorType | null;
 };
 
+export type ErrorType = {
+    message: string
+}

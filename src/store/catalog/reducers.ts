@@ -15,7 +15,7 @@ export const onGetProductsStart = (state: CatalogStateType) => ({
 
 export const onGetProductsSuccess = (state: CatalogStateType, payload: { products: Products }) => ({
     ...state,
-    products: [...state.products, ...payload.products],
+    products: payload.products,
     isLoading: false,
 });
 

@@ -1,34 +1,23 @@
-import { Button } from "@material-ui/core";
-import * as React from "react";
+import { map } from "lodash";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProductsStart, resetProducts } from "../../store/catalog/actions";
-import { catalogProductssSelector, catalogIsLoadingSelector } from "../../store/catalog/selectors";
-import { ProductType } from "../../store/catalog/types";
+import { getProductsStart } from "../../store/catalog/actions";
+import { catalogProductsSelector } from "../../store/catalog/selectors";
+import ProductCard from './components/productCard'
 
 export default function Catalog() {
     const dispatch = useDispatch();
-    const products = useSelector(catalogProductssSelector)
-    const isLoading = useSelector(catalogIsLoadingSelector)
+    const products = useSelector(catalogProductsSelector)
 
-    React.useEffect(() => { dispatch(getProductsStart()) }, []);
+    useEffect(() => { dispatch(getProductsStart()) }, []);
 
-    const onRefresh = () => {
-        dispatch(resetProducts());
-        dispatch(getProductsStart());
-    }
-
-    // const renderCard = ({ item: product }: { item: ProductType }) => (
-    //     <Card>
-    //         <View style={styles.container} >
-    //             <Image style={styles.img} resizeMode="cover"
-    //                 source={{ uri: image.download_url }} />
-    //             <Text style={styles.text}>{image.author}</Text>
-    //         </View>
-    //     </Card>
-    // )
 
     return (
-        <div></div>
+        <>
+            {map(products, (product) => (
+                <ProductCard key={product.id} product={product} />
+            ))}
+        </>
     )
 
 }

@@ -10,7 +10,7 @@ import {
     signInAsGuest,
     logout
 } from "./actions";
-import { AuthStateType, User } from "./types";
+import { AuthStateType, ErrorType, User } from "./types";
 
 export const onSignInStart = (state: AuthStateType) => ({
     ...state,
@@ -23,7 +23,7 @@ export const onSignInSuccess = (state: AuthStateType, payload: User) => ({
     isLoading: false,
 });
 
-export const onSignInError = (state: AuthStateType, payload: null) => ({
+export const onSignInError = (state: AuthStateType, payload: ErrorType) => ({
     ...initialState,
     error: payload,
 });
@@ -40,7 +40,7 @@ export const onSignUpSuccess = (state: AuthStateType, payload: User) => ({
     isLoading: false,
 });
 
-export const onSignUpError = (state: AuthStateType, payload: null) => ({
+export const onSignUpError = (state: AuthStateType, payload: ErrorType) => ({
     ...initialState,
     error: payload,
 });
